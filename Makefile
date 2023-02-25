@@ -1,18 +1,14 @@
-SRCS	= srcs/ft_printf.c \
-		srcs/put_char_str.c \
-		srcs/put_int_uint.c \
-		srcs/put_addr.c \
-		srcs/put_hex.c
+SRCS	= srcs/fdf.c
 OBJS	= ${SRCS:.c=.o}
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
-NAME	= libftprintf.a
+NAME	= fdf
 
 .c.o:	
 		${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
 
-${NAME}:	${OBJS}
-				ar rc ${NAME} ${OBJS}
+${NAME}:	${OBJS} includes/fdf.h
+				${CC} ${CFLAGS} -o ${NAME} ${OBJS}
 
 all:		${NAME}
 
