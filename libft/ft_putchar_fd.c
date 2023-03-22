@@ -1,35 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/25 17:20:53 by gurodrig          #+#    #+#             */
-/*   Updated: 2023/03/22 16:43:57 by gurodrig         ###   ########.fr       */
+/*   Created: 2022/11/09 12:37:11 by gurodrig          #+#    #+#             */
+/*   Updated: 2022/11/11 11:49:40 by gurodrig         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#ifndef FDF_H
-# define FDF_H
-
-#include <unistd.h>
-
-struct s_fdf 
+void	ft_putchar_fd(char c, int fd)
 {
-	int			**map;
-	unsigned int	dimx;
-	unsigned int	dimy;
-}	t_fdf;
-
-struct s_vector4
-{
-	int	*tab;
+	write(fd, &c, 1);
 }
-
-struct s_matrix4
-{
-	int	*t_vector4;	
-}	t_matrix4;
-
-#endif

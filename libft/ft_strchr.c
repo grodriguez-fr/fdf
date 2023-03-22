@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/25 17:20:53 by gurodrig          #+#    #+#             */
-/*   Updated: 2023/03/22 16:43:57 by gurodrig         ###   ########.fr       */
+/*   Created: 2022/11/08 15:27:32 by gurodrig          #+#    #+#             */
+/*   Updated: 2022/11/11 13:35:32 by gurodrig         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#ifndef FDF_H
-# define FDF_H
-
-#include <unistd.h>
-
-struct s_fdf 
+char	*ft_strchr(const char *s, int c)
 {
-	int			**map;
-	unsigned int	dimx;
-	unsigned int	dimy;
-}	t_fdf;
+	size_t	i;
 
-struct s_vector4
-{
-	int	*tab;
+	i = 0;
+	while (s[i])
+		if (s[i++] == (unsigned char)c)
+			return ((char *)&s[i - 1]);
+	if (s[i] == c)
+		return ((char *) &s[i]);
+	return (NULL);
 }
-
-struct s_matrix4
-{
-	int	*t_vector4;	
-}	t_matrix4;
-
-#endif

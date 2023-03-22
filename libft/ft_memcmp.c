@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/25 17:20:53 by gurodrig          #+#    #+#             */
-/*   Updated: 2023/03/22 16:43:57 by gurodrig         ###   ########.fr       */
+/*   Created: 2022/11/09 12:45:43 by gurodrig          #+#    #+#             */
+/*   Updated: 2022/11/11 18:01:55 by gurodrig         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#ifndef FDF_H
-# define FDF_H
-
-#include <unistd.h>
-
-struct s_fdf 
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int			**map;
-	unsigned int	dimx;
-	unsigned int	dimy;
-}	t_fdf;
+	size_t	i;
 
-struct s_vector4
-{
-	int	*tab;
+	i = 0;
+	while (i < n)
+	{
+		if ((((unsigned char *)s1))[i] != (((unsigned char *)s2))[i])
+			return ((int)((((unsigned char *)s1))[i]) \
+				- (int)((((unsigned char *)s2))[i]));
+		i++;
+	}
+	return (0);
 }
-
-struct s_matrix4
-{
-	int	*t_vector4;	
-}	t_matrix4;
-
-#endif

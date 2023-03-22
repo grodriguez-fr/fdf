@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/25 17:20:53 by gurodrig          #+#    #+#             */
-/*   Updated: 2023/03/22 16:43:57 by gurodrig         ###   ########.fr       */
+/*   Created: 2022/11/08 15:53:51 by gurodrig          #+#    #+#             */
+/*   Updated: 2022/11/12 12:04:30 by gurodrig         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#ifndef FDF_H
-# define FDF_H
-
-#include <unistd.h>
-
-struct s_fdf 
+int	ft_atoi(const char *nptr)
 {
-	int			**map;
-	unsigned int	dimx;
-	unsigned int	dimy;
-}	t_fdf;
+	unsigned int	res;
+	unsigned int	i;
+	int				sign;
 
-struct s_vector4
-{
-	int	*tab;
+	i = 0;
+	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
+		i++;
+	sign = 1;
+	if (nptr[i] == '+' || nptr[i] == '-')
+		if (nptr[i++] == '-')
+			sign = -1;
+	res = 0;
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+		res = res * 10 + nptr[i++] - '0';
+	return ((int)(res * sign));
 }
-
-struct s_matrix4
-{
-	int	*t_vector4;	
-}	t_matrix4;
-
-#endif

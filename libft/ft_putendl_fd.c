@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/25 17:20:53 by gurodrig          #+#    #+#             */
-/*   Updated: 2023/03/22 16:43:57 by gurodrig         ###   ########.fr       */
+/*   Created: 2022/11/09 11:57:44 by gurodrig          #+#    #+#             */
+/*   Updated: 2022/11/11 13:42:59 by gurodrig         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#ifndef FDF_H
-# define FDF_H
-
-#include <unistd.h>
-
-struct s_fdf 
+void	ft_putendl_fd(char *s, int fd)
 {
-	int			**map;
-	unsigned int	dimx;
-	unsigned int	dimy;
-}	t_fdf;
-
-struct s_vector4
-{
-	int	*tab;
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }
-
-struct s_matrix4
-{
-	int	*t_vector4;	
-}	t_matrix4;
-
-#endif

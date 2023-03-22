@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/25 17:23:24 by gurodrig          #+#    #+#             */
-/*   Updated: 2023/02/25 17:25:47 by gurodrig         ###   ########.fr       */
+/*   Created: 2022/11/09 12:37:52 by gurodrig          #+#    #+#             */
+/*   Updated: 2022/11/11 13:33:30 by gurodrig         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-#include "fdf.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	if (argc != 2)
-		write(1, "Wrong arg number", 15);
-	write(1, argv[0], 1);
-	return (0);
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+		((unsigned char *)s)[i++] = (unsigned char)c;
+	return (s);
 }

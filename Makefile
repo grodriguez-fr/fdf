@@ -1,23 +1,47 @@
-SRCS	= srcs/fdf.c
-OBJS	= ${SRCS:.c=.o}
-CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
-NAME	= fdf
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/03/22 15:35:05 by gurodrig          #+#    #+#              #
+#    Updated: 2023/03/22 16:46:28 by gurodrig         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+SRCS	= src/main.c
 
-.c.o:	
-		${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o}
+INCLUDE_FOLDER	= includes
+HEADERS	= includes/fdf.h includes/get_next_line.h includes/libft.h
 
-${NAME}:	${OBJS} includes/fdf.h
-				${CC} ${CFLAGS} -o ${NAME} ${OBJS}
+OBJ_FOLDER = obj
+OBJS	= $(addprefix $(OBJ_FOLDER)/, $(notdir $(SRCS:.c=.o)))
 
-all:		${NAME}
+NAME	= fdf 
 
-clean:	
-			rm -f ${OBJS}
+CC	= cc
+CFLAGS	= -Wall -Wextra -Werror 
 
-fclean:	clean 
-			rm -f ${NAME}
+LIBFT	= libft/libft.a
 
-re:		fclean all
+$(OBJ_FOLDER)/%.o: src/%.c
+	${CC} -I$(INCLUDE_FOLDER) -c $< -o $@ $(CFLAGS)
 
-.PHONY:		all clean fclean re
+all: $(NAME)
+
+$(NAME): $(OBJS) $(HEADERS) $(LIBFT)
+	${CC} $(CFLAGS) $(LIBFT) -o $@ $^
+
+$(LIBFT):
+	make -C libft
+clean :
+	rm -rf $(OBJ_FOLDER)/*.o
+	make clean -C libft
+
+fclean : clean
+	rm -f $(LIBFT)	
+	rm -f $(NAME)
+
+re : fclean all
+
+.PHONY: all clean fclean re
