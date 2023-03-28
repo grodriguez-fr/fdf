@@ -6,10 +6,11 @@
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 14:41:59 by gurodrig          #+#    #+#             */
-/*   Updated: 2022/11/23 15:14:08 by gurodrig         ###   ########lyon.fr   */
+/*   Updated: 2023/03/28 11:27:26 by gurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
+#include "libft.h"
 
 int	add_to_memory(char **mem, char buffer[BUFFER_SIZE], int nb_read)
 {

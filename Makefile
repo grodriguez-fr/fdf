@@ -6,10 +6,11 @@
 #    By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 15:35:05 by gurodrig          #+#    #+#              #
-#    Updated: 2023/03/22 16:46:28 by gurodrig         ###   ########.fr        #
+#    Updated: 2023/03/28 11:23:17 by gurodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-SRCS	= src/main.c
+SRCS	= src/main.c \
+	  src/parsing.c
 
 INCLUDE_FOLDER	= includes
 HEADERS	= includes/fdf.h includes/get_next_line.h includes/libft.h

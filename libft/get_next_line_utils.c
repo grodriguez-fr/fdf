@@ -6,35 +6,11 @@
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:10:35 by gurodrig          #+#    #+#             */
-/*   Updated: 2022/11/23 15:12:16 by gurodrig         ###   ########lyon.fr   */
+/*   Updated: 2023/03/28 11:26:52 by gurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
-
-char	*ft_strchr(char *src, char searched)
-{
-	size_t	i;
-
-	if (!src)
-		return (NULL);
-	i = 0;
-	while (src[i])
-		if (src[i++] == searched)
-			return (&src[i - 1]);
-	return (NULL);
-}
-
-int	ft_strlen(const char *str)
-{
-	int	i;
-
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
+#include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
