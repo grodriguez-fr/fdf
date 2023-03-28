@@ -1,3 +1,4 @@
 *.o
 *.swp
 fdf
+libft/libft.a

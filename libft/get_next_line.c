@@ -6,11 +6,10 @@
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 14:41:59 by gurodrig          #+#    #+#             */
-/*   Updated: 2023/03/28 11:27:26 by gurodrig         ###   ########.fr       */
+/*   Updated: 2023/03/28 12:21:14 by gurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
-#include "libft.h"
 
 int	add_to_memory(char **mem, char buffer[BUFFER_SIZE], int nb_read)
 {
@@ -19,7 +18,7 @@ int	add_to_memory(char **mem, char buffer[BUFFER_SIZE], int nb_read)
 	int		i;
 	int		j;
 
-	len_mem = ft_strlen(*mem);
+	len_mem = ft_strlen_gnl(*mem);
 	res = (char *)malloc(sizeof(char) * (len_mem + nb_read + 1));
 	if (!res)
 		return (0);
@@ -49,11 +48,11 @@ char	*get_line(char **mem)
 		len++;
 	if ((*mem)[len] == '\n')
 		len++;
-	res = ft_substr(*mem, 0, len);
+	res = ft_substr_gnl(*mem, 0, len);
 	len2 = 0;
 	while ((*mem)[len2])
 		len2++;
-	buffer = ft_substr(*mem, len, len2);
+	buffer = ft_substr_gnl(*mem, len, len2);
 	free(*mem);
 	*mem = buffer;
 	return (res);
@@ -65,14 +64,14 @@ char	*get_next_line(int fd)
 	char		buffer[BUFFER_SIZE];
 	int			nb_read;
 
-	if (ft_strchr(mem, '\n'))
+	if (ft_strchr_gnl(mem, '\n'))
 		return (get_line(&mem));
 	nb_read = read(fd, buffer, BUFFER_SIZE);
 	while (nb_read > 0)
 	{
 		if (!add_to_memory(&mem, buffer, nb_read))
 			return (NULL);
-		if (ft_strchr(mem, '\n'))
+		if (ft_strchr_gnl(mem, '\n'))
 			return (get_line(&mem));
 		nb_read = read(fd, buffer, BUFFER_SIZE);
 	}

@@ -35,6 +35,7 @@ SRCS	= ft_memcpy.c \
 		ft_strlcpy.c \
 		ft_calloc.c \
 		get_next_line.c \
+		get_next_line_utils.c \
 		ft_strncmp.c
 SRCS_BONUS	=	ft_lstiter_bonus.c \
 				ft_lstmap_bonus.c \
