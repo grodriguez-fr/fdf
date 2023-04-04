@@ -19,6 +19,7 @@
 # include <sys/types.h>
 # include <string.h>
 # include <errno.h>
+# include "mlx.h"
 # include "get_next_line.h"
 # include "libft.h"
 
@@ -27,6 +28,8 @@ typedef struct s_fdf
 	int				**map;
 	unsigned int	dimx;
 	unsigned int	dimy;
+	void		*mlx;
+	void		*win;
 }	t_fdf;
 
 typedef struct s_vector4

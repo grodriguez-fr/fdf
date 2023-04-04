@@ -10,24 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
-#include <mlx.h>
-#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
 	t_fdf	*map;
-	void	*mlx_ptr;
-	void	*win_ptr;
 
 	map = malloc(sizeof(t_fdf));
 	if (!map)
-		return (ft_putstr_fd("Malloc failed", 2), 1);
+		return (ft_putstr_fd("Malloc failed\n", 2), 1);
 	if (argc != 2)
 		return (ft_putstr_fd("Wrong arg number\n", 2), 1);
 	parse_map(map, argv[1]);
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "FdF");
-	mlx_pixel_put(mlx_ptr, win_ptr, 250, 250, 0x00FFFFFF);
-	mlx_loop(mlx_ptr);
+	map->mlx= mlx_init();
+	map->win= mlx_new_window(map->mlx, 500, 500, "FdF");
+	mlx_pixel_put(map->mlx, map->win, 250, 250, 0x00FFFFFF);
+	mlx_loop(map->mlx);
 	return (0);
 }

@@ -38,7 +38,7 @@ all: $(NAME)
 
 
 $(NAME): $(OBJS) $(HEADERS) $(LIBFT) $(MLX_LIB)
-	${CC} $(CFLAGS) $(LIBFT) $(MLX_LIB) $(X11_LIB) $(XEXT_LIB) -o $@ $^
+	${CC} $(CFLAGS) $(LIBFT) $(MLX_INC) $(MLX_LIB) $(X11_LIB) $(XEXT_LIB) -o $@ $^
 
 $(MLX_LIB):
 	make -sC $(MLX_PATH)
