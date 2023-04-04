@@ -10,6 +10,11 @@
 #                                                                              #
 # **************************************************************************** #
 SRCS	= src/main.c \
+	  src/utils.c \
+	  src/matrix.c \
+	  src/camera_basic.c \
+	  src/camera_matrix.c \
+	  src/matrix_operations.c \
 	  src/parsing.c
 MLX_PATH	= minilibx-linux
 INCLUDE_FOLDER	= includes
@@ -26,7 +31,7 @@ OBJS	= $(addprefix $(OBJ_FOLDER)/, $(notdir $(SRCS:.c=.o)))
 NAME	= fdf 
 
 CC	= cc
-CFLAGS	= -Wall -Wextra -Werror 
+CFLAGS	= -Wall -Wextra -Werror -lm
 
 LIBFT	= libft/libft.a
 
