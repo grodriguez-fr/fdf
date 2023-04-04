@@ -53,7 +53,8 @@ char	*get_line(char **mem)
 	while ((*mem)[len2])
 		len2++;
 	buffer = ft_substr_gnl(*mem, len, len2);
-	free(*mem);
+	if (*mem)
+		free(*mem);
 	*mem = buffer;
 	return (res);
 }
@@ -78,6 +79,6 @@ char	*get_next_line(int fd)
 	if (mem && mem[0])
 		return (get_line(&mem));
 	if (mem)
-		return (free(mem), NULL);
+		return (free(mem), mem = NULL, NULL);
 	return (NULL);
 }
