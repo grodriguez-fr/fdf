@@ -18,6 +18,7 @@ HEADERS	= includes/fdf.h includes/get_next_line.h includes/libft.h
 OBJ_FOLDER = obj
 OBJS	= $(addprefix $(OBJ_FOLDER)/, $(notdir $(SRCS:.c=.o)))
 
+MLX_PATH = minilibx-linux
 NAME	= fdf 
 
 CC	= cc
@@ -28,7 +29,11 @@ LIBFT	= libft/libft.a
 $(OBJ_FOLDER)/%.o: src/%.c
 	${CC} -I$(INCLUDE_FOLDER) -c $< -o $@ $(CFLAGS)
 
+
 all: $(NAME)
+
+mlx:
+	make -sC $(MLX_PATH)
 
 $(NAME): $(OBJS) $(HEADERS) $(LIBFT)
 	${CC} $(CFLAGS) $(LIBFT) -o $@ $^
