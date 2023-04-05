@@ -26,12 +26,12 @@ void	draw_map(t_fdf *map)
 			proj_vec(d.projection, d.cammat, d.screen, &map->map[i][j], d.res);
 			printf("%f : %f\n", d.res->tab[0], d.res->tab[1]);	
 			mlx_pixel_put(map->mlx, map->win, d.res->tab[0], d.res->tab[1], 0x00FFFFFF);
-			if (i + 1 < map->dimx)
+			if (i + 1 < map->dimy)
 			{
 				proj_vec(d.projection, d.cammat, d.screen, &map->map[i + 1][j], d.res2);
 				draw_line(map, d.res, d.res2);	
 			}
-			if (j + 1 < map->dimy)
+			if (j + 1 < map->dimx)
 			{
 				proj_vec(d.projection, d.cammat, d.screen, &map->map[i][j + 1], d.res2);
 				draw_line(map, d.res, d.res2);	
@@ -41,29 +41,29 @@ void	draw_map(t_fdf *map)
 		i++;	
 	}
 }
-
+void	init_bresenham(t_bresenham *b, t_vector4 *start, t_vector4 *end, t_fdf *map)
+{
+	b.dx = abs(end->tab[0] - start->tab[0]);
+	b.dy = abs(end->tab[1] - start->tab[1]);
+	if (start->tab[0] < end->tab[0])
+		b.sx = 1;
+	else
+		b.sx = -1;
+	if (start->tab[1] < end->tab[1])
+		b.sy = 1;
+	else
+		b.sy = -1;
+	b.e = dx - dy;
+	b.x = start->tab[0];
+	b.y = start->tab[1];
+}
 void	draw_line(t_fdf *map, t_vector4 *start, t_vector4 *end)
 {
 	t_bresenham b;
 
-	b.dy = (int)end->tab[1] - (int)start->tab[1];
-	b.dx = (int)end->tab[0] - (int)start->tab[0];
-	b.y = (int)start->tab[1];
-	b.e = 0;
-	printf("%d avant :\n", b.dx);
-	b.e10 = b.dy / b.dx;
-	printf("apres\n");
-	b.e01 = -1;
-	b.x = start->tab[0];
-	while (b.x <= end->tab[0])
+	init_bresenham(b, start, end, map);
+	while(b.x != end->tab[0] || b.y != end->tab[1])
 	{
-		mlx_pixel_put(map->mlx, map->win, b.x, b.y, 0xFFFFFF);
-		b.e += b.e10;
-		if (b.e	>= 0.5)
-		{
-			b.y += 1;
-			b.e += b.e01;	
-		}
-		b.x++;
+			
 	}
 }
