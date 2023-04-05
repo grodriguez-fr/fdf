@@ -28,6 +28,17 @@
 # define SCREEN_H 500
 # define SCREEN_W 500
 
+typedef struct s_bresenham
+{
+	int	x;
+	int	y;
+	int	dx;
+	int	dy;
+	float	e;
+	float	e10;
+	float	e01;
+}	t_bresenham;
+
 typedef struct s_vector4
 {
 	float	*tab;
@@ -37,6 +48,15 @@ typedef struct s_mat4
 {
 	float	**tab;
 }	t_mat4;
+
+typedef struct s_draw
+{
+	t_mat4		*projection;
+	t_mat4		*screen;	
+	t_mat4		*cammat;
+	t_vector4	*res;
+	t_vector4	*res2;
+}	t_draw;
 
 typedef struct s_camera
 {
@@ -81,4 +101,6 @@ int	init_vec4(t_vector4 **vec);
 void	free_v(t_vector4 *vec);
 void	printmat(t_mat4 *m);
 void	printvec(t_vector4 *v);
+void	draw_map(t_fdf *map);
+void	draw_line(t_fdf *map, t_vector4 *start, t_vector4 *end);
 #endif

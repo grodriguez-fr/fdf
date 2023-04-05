@@ -62,23 +62,11 @@ void	proj_vec(t_mat4 *pr, t_mat4 *c, t_mat4 *sc, t_vector4 *e, t_vector4 *s)
 {
 	t_vector4	*s2;
 
-	printf("avant proj de :");
-	printvec(e);
-	printmat(c);
 	init_vec4(&s2);
 	multvec(e, c, s);
-	printf("apres mult cam_mat :");
-	printvec(s);
-	printmat(pr);
 	multvec(s, pr, s2);
-	printf("apres matrice projection :");
-	printvec(s2);
 	normalize_vec(s2);
-	printf("apres normalisation :");
-	printvec(s2);
 	multvec(s2, sc, s);
-	printf("apres clipspace->screen :");
-	printvec(s);
 	free_v(s2);
 }
 

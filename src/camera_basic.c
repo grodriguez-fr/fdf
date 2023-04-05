@@ -16,10 +16,6 @@ int	init_cam(t_camera *c, float x, float y, float z)
 	c->forward->tab[2] = 1;
 	c->up->tab[1] = 1;
 	c->right->tab[0] = 1;
-	printvec(c->position);
-	printvec(c->forward);
-	printvec(c->up);
-	printvec(c->right);
 	c->h_fov = M_PI / 3;
 	c->v_fov = c->h_fov * (SCREEN_H / SCREEN_W);
 	c->near_plane = 0.1;
