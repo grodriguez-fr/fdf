@@ -20,6 +20,7 @@
 # include <string.h>
 # include <errno.h>
 # include <math.h>
+# include <stdio.h>
 # include "mlx.h"
 # include "get_next_line.h"
 # include "libft.h"
@@ -74,5 +75,10 @@ void	camera_matrix(t_camera *cam, t_mat4 *res);
 void	projection_matrix(t_camera *cam, t_mat4 *res);
 void	camera_screen_matrix(t_mat4 *res);
 void	proj_vec(t_mat4 *pr, t_mat4 *c, t_mat4 *sc, t_vector4 *e, t_vector4 *s);
-
+void	free_mat4(t_mat4 **m);
+int	init_mat4(t_mat4 **m);
+int	init_vec4(t_vector4 **vec);
+void	free_v(t_vector4 *vec);
+void	printmat(t_mat4 *m);
+void	printvec(t_vector4 *v);
 #endif

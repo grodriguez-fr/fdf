@@ -15,6 +15,7 @@ SRCS	= src/main.c \
 	  src/camera_basic.c \
 	  src/camera_matrix.c \
 	  src/matrix_operations.c \
+	  src/matrix_base.c \
 	  src/parsing.c
 MLX_PATH	= minilibx-linux
 INCLUDE_FOLDER	= includes
