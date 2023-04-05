@@ -34,9 +34,11 @@ typedef struct s_bresenham
 	int	y;
 	int	dx;
 	int	dy;
-	float	e;
-	float	e10;
-	float	e01;
+	int	p;
+	int	sx;
+	int	sy;
+	int	e;
+	int	e2;
 }	t_bresenham;
 
 typedef struct s_vector4
