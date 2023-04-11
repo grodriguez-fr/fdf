@@ -33,6 +33,6 @@ void	set_vector(t_fdf *map, int nb, int i, int j)
 {
 	map->map[i][j].tab[0] = (float)i;
 	map->map[i][j].tab[1] = (float)j;
-	map->map[i][j].tab[2] = (float)nb/5;
+	map->map[i][j].tab[2] = (float)nb/-5;
 	map->map[i][j].tab[3] = 1;
 }
