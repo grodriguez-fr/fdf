@@ -30,15 +30,10 @@
 
 typedef struct s_bresenham
 {
-	int	x;
-	int	y;
-	int	dx;
-	int	dy;
-	int	p;
-	int	sx;
-	int	sy;
-	int	e;
-	int	e2;
+	int	p0x;
+	int	p0y;
+	int	p1x;
+	int	p1y;
 }	t_bresenham;
 
 typedef struct s_vector4

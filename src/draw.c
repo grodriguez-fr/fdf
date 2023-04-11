@@ -1,4 +1,5 @@
 #include "fdf.h"
+
 void	init_draw(t_draw *d, t_fdf *map)
 {
 	init_mat4(&d->projection);
@@ -10,6 +11,7 @@ void	init_draw(t_draw *d, t_fdf *map)
 	camera_matrix(map->cam, d->cammat);
 	camera_screen_matrix(d->screen);
 }
+
 void	draw_map(t_fdf *map)
 {
 	t_draw		d;
@@ -49,36 +51,5 @@ void	draw_map(t_fdf *map)
 			j++;
 		}
 		i++;	
-	}
-}
-
-void	init_bresenham(t_bresenham *b, int x0, int y0, int x1, int y1) 
-{
-	b->dx = x1 - x0;
-	b->dy = y1 - y0;
-	b->x = x0;
-	b->y = y0;
-	b->p = 2 * b->dy - b->dx;
-}
-
-void	draw_line(t_fdf *map, t_vector4 *start, t_vector4 *end)
-{
-	t_bresenham b;
-
-	init_bresenham(&b, start->tab[0], start->tab[1], end->tab[0], end->tab[1]);
-	while(b.x < (int)end->tab[0])
-	{
-		if (b.p >= 0)
-		{
-			mlx_pixel_put(map->mlx, map->win, b.x, b.y, 0x00FFFFFF);
-			b.y = b.y + 1;
-			b.p = b.p + 2 * b.dy - 2 * b.dx;		
-		}
-		else
-		{
-			mlx_pixel_put(map->mlx, map->win, b.x, b.y, 0x00FFFFFF);
-			b.p = b.p + 2 * b.dy;	
-		}
-		b.x = b.x + 1;
 	}
 }
