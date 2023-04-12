@@ -59,6 +59,18 @@ void	free_v(t_vector4 *vec)
 	free(vec);
 }
 
+void	vec_copy(t_vector4 *dst, t_vector4 *src)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		dst->tab[i] = src->tab[i];
+		i++;
+	}
+}
+
 void	printmat(t_mat4 *m)
 {
 	printf("\n");

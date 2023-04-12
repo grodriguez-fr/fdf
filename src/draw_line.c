@@ -6,7 +6,6 @@ static void	draw_line_higrad(t_bresenham *b, t_fdf *map)
 	int			way_x;
 	int			error;
 
-	printf("higrad\n");
 	delta[0] = b->p1x - b->p0x;
 	delta[1] = b->p1y - b->p0y;
 	way_x = 1;
@@ -15,8 +14,8 @@ static void	draw_line_higrad(t_bresenham *b, t_fdf *map)
 	error = 2 * delta[0] - delta[1];
 	while (b->p0y < b->p1y)
 	{
-		mlx_pixel_put(map->mlx, map->win, b->p0x, b->p0y, 0x00FFFFFF);
-		//img[(p0.y * win_w + p0.x)] = color;
+		//mlx_pixel_put(map->mlx, map->win, b->p0x, b->p0y, 0x00FFFFFF);
+		my_mlx_put_pixel(map, b->p0x, b->p0y);
 		if (error > 0)
 		{
 			b->p0x = b->p0x + way_x;
@@ -33,7 +32,6 @@ static void	draw_line_lograd(t_bresenham *b, t_fdf *map)
 	int			way_y;
 	int			error;
 
-	printf("lograd\n");
 	delta[0] = b->p1x - b->p0x;
 	delta[1] = b->p1y - b->p0y;
 	way_y = 1;
@@ -42,8 +40,8 @@ static void	draw_line_lograd(t_bresenham *b, t_fdf *map)
 	error = 2 * delta[1] - delta[0];
 	while (b->p0x < b->p1x)
 	{
-		mlx_pixel_put(map->mlx, map->win, b->p0x, b->p0y, 0x00FFFFFF);
-		//img[(p0.y * win_w + p0.x)] = color;
+		//mlx_pixel_put(map->mlx, map->win, b->p0x, b->p0y, 0x00FFFFFF);
+		my_mlx_put_pixel(map, b->p0x, b->p0y);
 		if (error > 0)
 		{
 			b->p0y = b->p0y + way_y;

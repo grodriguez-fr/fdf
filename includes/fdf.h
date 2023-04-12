@@ -27,6 +27,11 @@
 
 # define SCREEN_H 500
 # define SCREEN_W 500
+# define KEY_LEFT 65361
+# define KEY_UP 65362
+# define KEY_RIGHT 65363
+# define KEY_DOWN 65364
+# define ESCAPE_KEY 65307
 
 typedef struct s_bresenham
 {
@@ -48,6 +53,7 @@ typedef struct s_mat4
 
 typedef struct s_draw
 {
+	unsigned int	i;
 	t_mat4		*projection;
 	t_mat4		*screen;	
 	t_mat4		*cammat;
@@ -67,10 +73,20 @@ typedef struct s_camera
 	float		far_plane;
 }	t_camera;
 
+typedef struct s_img
+{
+	void	*img;
+	int	*addr;
+	int	bits_per_pixel;
+	int	line_length;
+	int	endian;
+}	t_img;
+
 typedef struct s_fdf
 {
 	t_vector4	**map;
 	t_camera	*cam;
+	t_img		img;
 	unsigned int	dimx;
 	unsigned int	dimy;
 	void		*mlx;
@@ -87,6 +103,9 @@ void	free_cam(t_camera *cam);
 void	set_vector(t_fdf *map, int nb, int i, int j);
 void	translation_matrix(t_mat4 *m, float tx, float ty, float tz);
 void	scaling_matrix(t_mat4 *m, float scale);
+void	rotation_x_matrix(t_mat4 *m, float a);
+void	rotation_y_matrix(t_mat4 *m, float a);
+void	rotation_z_matrix(t_mat4 *m, float a);
 void	mult(t_mat4 *a, t_mat4 *b, t_mat4 *res);
 void	camera_matrix(t_camera *cam, t_mat4 *res);
 void	projection_matrix(t_camera *cam, t_mat4 *res);
@@ -96,8 +115,12 @@ void	free_mat4(t_mat4 **m);
 int	init_mat4(t_mat4 **m);
 int	init_vec4(t_vector4 **vec);
 void	free_v(t_vector4 *vec);
+void	vec_copy(t_vector4 *dst, t_vector4 *src);
+void	multvec(t_vector4 *a, t_mat4 *b, t_vector4 *res);
 void	printmat(t_mat4 *m);
 void	printvec(t_vector4 *v);
 void	draw_map(t_fdf *map);
 void	draw_line(t_fdf *map, t_vector4 *start, t_vector4 *end);
+void	my_mlx_put_pixel(t_fdf *map, int x, int y);
+void	render_screen(t_fdf *map);
 #endif
