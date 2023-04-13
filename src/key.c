@@ -5,18 +5,18 @@ void	free_map(t_fdf *map)
 	unsigned int	i;
 	unsigned int	j;
 
-	if (!map->map)
-		return ;
 	i = 0;
-	while (i < map->dimy)
+	while (map->map && i < map->dimy)
 	{
 		j = 0;
 		while (map->map[i] && j < map->dimx)
 		{
-			free(map->map[i][j].tab);
+			if (map->map[i][j].tab)
+				free(map->map[i][j].tab);
 			j++;
 		}
-		free(map->map[i]);
+		if (map->map[i])
+			free(map->map[i]);
 		i++;
 	}
 	free(map->map);
@@ -66,17 +66,23 @@ int	deal_key(int key, void *param)
 	if (key == 'o')
 		map->cam->position->tab[2] = map->cam->position->tab[2] - map->cam->speed;
 	if (key == KEY_LEFT)
-		rotate_camera(map, &rotation_x_matrix, -0.015);
+		if (!rotate_camera(map, &rotation_x_matrix, -0.015))
+			exit_app(map);
 	if (key == KEY_RIGHT)
-		rotate_camera(map, &rotation_x_matrix, 0.015);
+		if (!rotate_camera(map, &rotation_x_matrix, 0.015))
+			exit_app(map);
 	if (key == KEY_UP)
-		rotate_camera(map, &rotation_y_matrix, -0.015);
+		if (!rotate_camera(map, &rotation_y_matrix, -0.015))
+			exit_app(map);
 	if (key == KEY_DOWN)
-		rotate_camera(map, &rotation_y_matrix, 0.015);
+		if (!rotate_camera(map, &rotation_y_matrix, 0.015))
+			exit_app(map);
 	if (key == 'k')
-		rotate_camera(map, &rotation_z_matrix, -0.015);
+		if (!rotate_camera(map, &rotation_z_matrix, -0.015))
+			exit_app(map);
 	if (key == 'l')
-		rotate_camera(map, &rotation_z_matrix, 0.015);
+		if (!rotate_camera(map, &rotation_z_matrix, 0.015))
+			exit_app(map);
 	if (key == ESCAPE_KEY)
 		exit_app(map);
 	render_screen(map);

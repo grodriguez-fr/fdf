@@ -38,7 +38,8 @@ int	init_map(t_fdf **map, char *arg)
 	max = (float)(*map)->dimx;
 	if ((*map)->dimy > (*map)->dimx)
 		max = (float)(*map)->dimy;
-	init_cam((*map)->cam, 27/19.0*max, 27/19.0*max, -30/19.0*max, max/25);
+	if (!init_cam((*map)->cam, 27/19.0*max, 27/19.0*max, -30/19.0*max, max/25))
+		exit_app(*map);
 	return (1);
 }
 
@@ -50,7 +51,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (ft_putstr_fd("Wrong arg number\n", 2), 1);
 	if (!init_map(&map, argv[1]))
-		return (1);
+		return (exit_app(map), 1);
 	render_screen(map);
 	mlx_key_hook(map->win, deal_key, map);
 	mlx_hook(map->win, 17, 1L >> 17, exitmlx, map);

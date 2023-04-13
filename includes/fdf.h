@@ -20,6 +20,7 @@
 # include <string.h>
 # include <errno.h>
 # include <math.h>
+# include <stdio.h>
 # include "mlx.h"
 # include "get_next_line.h"
 # include "libft.h"
@@ -127,11 +128,11 @@ void	scaling_matrix(t_mat4 *m, float scale);
 void	rotation_x_matrix(t_mat4 *m, float a);
 void	rotation_y_matrix(t_mat4 *m, float a);
 void	rotation_z_matrix(t_mat4 *m, float a);
-void	camera_matrix(t_camera *cam, t_mat4 *res);
+int	camera_matrix(t_camera *cam, t_mat4 *res);
 void	projection_matrix(t_camera *cam, t_mat4 *res);
 void	camera_screen_matrix(t_mat4 *res);
 
-void	proj_vec(t_mat4 *pr, t_mat4 *c, t_mat4 *sc, t_vector4 *e, t_vector4 *s);
+int	proj_vec(t_mat4 *pr, t_mat4 *c, t_mat4 *sc, t_vector4 *e, t_vector4 *s);
 void	set_vector(t_fdf *map, int nb, int i, int j);
 void	vec_copy(t_vector4 *dst, t_vector4 *src);
 void	mult(t_mat4 *a, t_mat4 *b, t_mat4 *res);

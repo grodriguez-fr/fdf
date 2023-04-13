@@ -64,15 +64,17 @@ void	normalize_vec(t_vector4 *vec)
 	vec->tab[3] /= vec->tab[3];
 }
 
-void	proj_vec(t_mat4 *pr, t_mat4 *c, t_mat4 *sc, t_vector4 *e, t_vector4 *s)
+int	proj_vec(t_mat4 *pr, t_mat4 *c, t_mat4 *sc, t_vector4 *e, t_vector4 *s)
 {
 	t_vector4	*s2;
 
-	init_vec4(&s2);
+	if (!init_vec4(&s2))
+		return (0);
 	multvec(e, c, s);
 	multvec(s, pr, s2);
 	normalize_vec(s2);
 	multvec(s2, sc, s);
 	free_v(s2);
+	return (1);
 }
 

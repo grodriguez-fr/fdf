@@ -40,18 +40,21 @@ void	camera_rotate_matrix(t_camera *cam, t_mat4 *res)
 	res->tab[3][3] = 1;
 }
 
-void	camera_matrix(t_camera *cam, t_mat4 *res)
+int	camera_matrix(t_camera *cam, t_mat4 *res)
 {
 	t_mat4	*translate;
 	t_mat4	*rotate;
 
-	init_mat4(&translate);
-	init_mat4(&rotate);
+	if (!init_mat4(&translate))
+		return (0);
+	if(!init_mat4(&rotate))
+		return (free_mat4(translate), 0);
 	camera_translate_matrix(cam, translate);
 	camera_rotate_matrix(cam, rotate);
 	mult(translate, rotate, res);
 	free_mat4(translate);
 	free_mat4(rotate);
+	return (1);
 }
 
 void	projection_matrix(t_camera *cam, t_mat4 *res)
