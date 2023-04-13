@@ -1,6 +1,18 @@
 #include "fdf.h"
+void	init_iso(t_camera *c)
+{
+	c->up->tab[0] = -0.567347;
+	c->up->tab[1] = -0.554885;
+	c->up->tab[2] = -0.608447;
+	c->right->tab[0] = -0.689570;
+	c->right->tab[1] = 0.724022;
+	c->right->tab[2] = -0.017296;
+	c->forward->tab[0] = -0.450138;
+	c->forward->tab[1] = -0.409766;
+	c->forward->tab[2] = 0.793395;
+}
 
-int	init_cam(t_camera *c, float x, float y, float z)
+int	init_cam(t_camera *c, float x, float y, float z, float speed)
 {
 	if (!init_vec4(&c->position))
 		return (0);
@@ -16,10 +28,12 @@ int	init_cam(t_camera *c, float x, float y, float z)
 	c->forward->tab[2] = 1;
 	c->up->tab[1] = 1;
 	c->right->tab[0] = 1;
+	init_iso(c);
 	c->h_fov = M_PI / 3;
-	c->v_fov = c->h_fov * (SCREEN_H / SCREEN_W);
+	c->v_fov = c->h_fov * ((float)SCREEN_H / (float)SCREEN_W);
 	c->near_plane = 0.1;
 	c->far_plane = 100;
+	c->speed = speed;
 	return (1);
 }
 
@@ -30,4 +44,23 @@ void	free_cam(t_camera *cam)
 	free_v(cam->up);
 	free_v(cam->right);
 	free(cam);
+}
+
+int	rotate_camera(t_fdf *map, void (*rotate_fun) (t_mat4 *, float), float a)
+{
+	t_mat4 *rot;
+	t_vector4 *copy;
+
+	if (!init_mat4(&rot))
+		return (0);
+	if (!init_vec4(&copy))
+		return (free_mat4(&rot), 0);
+	rotate_fun(rot, a);
+	vec_copy(copy, map->cam->up);
+	multvec(copy, rot, map->cam->up);
+	vec_copy(copy, map->cam->forward);
+	multvec(copy, rot, map->cam->forward);
+	vec_copy(copy, map->cam->right);
+	multvec(copy, rot, map->cam->right);
+	return (free_mat4(&rot), free_v(copy), 1);
 }

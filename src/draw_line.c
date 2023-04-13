@@ -52,12 +52,21 @@ static void	draw_line_lograd(t_bresenham *b, t_fdf *map)
 	}
 }
 
-void	init_bresenham(t_bresenham *b, int x0, int y0, int x1, int y1) 
+int	init_bresenham(t_bresenham *b, int x0, int y0, int x1, int y1) 
 {
+	if (x0 < -SCREEN_W*0.2 || x0 > SCREEN_W*1.2)
+		return (0);
+	if (y0 < -SCREEN_H*0.2 || y0 > SCREEN_H*1.2)
+		return (0);
+	if (x1 < -SCREEN_W*0.2 || x1 > SCREEN_W*1.2)
+		return (0);
+	if (y1 < -SCREEN_H*0.2 || y1 > SCREEN_H*1.2)
+		return (0);
 	b->p0x = x0;
 	b->p0y = y0;
 	b->p1x = x1;
 	b->p1y = y1;
+	return (1);
 }
 
 void	exchange_p0_p1(t_bresenham *b)
@@ -77,7 +86,8 @@ void	draw_line(t_fdf *map, t_vector4 *start, t_vector4 *end)
 {
 	t_bresenham b;
 
-	init_bresenham(&b, start->tab[0], start->tab[1], end->tab[0], end->tab[1]);
+	if (!init_bresenham(&b, start->tab[0], start->tab[1], end->tab[0], end->tab[1]))
+		return ;
 	if (abs(b.p1y - b.p0y) < abs(b.p1x - b.p0x))
 	{
 		if (b.p0x > b.p1x)

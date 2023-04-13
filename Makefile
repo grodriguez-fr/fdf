@@ -18,6 +18,7 @@ SRCS	= src/main.c \
 	  src/matrix_base.c \
 	  src/draw.c \
 	  src/draw_line.c \
+	  src/key.c \
 	  src/parsing.c
 MLX_PATH	= minilibx-linux
 INCLUDE_FOLDER	= includes

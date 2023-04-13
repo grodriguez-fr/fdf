@@ -26,7 +26,7 @@
 # include "libft.h"
 
 # define SCREEN_H 500
-# define SCREEN_W 500
+# define SCREEN_W 1000
 # define KEY_LEFT 65361
 # define KEY_UP 65362
 # define KEY_RIGHT 65363
@@ -71,6 +71,7 @@ typedef struct s_camera
 	float		v_fov;
 	float		near_plane;
 	float		far_plane;
+	float		speed;
 }	t_camera;
 
 typedef struct s_img
@@ -97,7 +98,7 @@ typedef struct s_fdf
 int		parse_map(t_fdf *map, const char *filename);
 int		write_error(void);
 int		numbers_per_line(char *line);
-int		init_cam(t_camera *cam, float x, float y, float z);
+int		init_cam(t_camera *cam, float x, float y, float z, float speed);
 
 void	free_cam(t_camera *cam);
 void	set_vector(t_fdf *map, int nb, int i, int j);
@@ -123,4 +124,8 @@ void	draw_map(t_fdf *map);
 void	draw_line(t_fdf *map, t_vector4 *start, t_vector4 *end);
 void	my_mlx_put_pixel(t_fdf *map, int x, int y);
 void	render_screen(t_fdf *map);
+int	rotate_camera(t_fdf *map, void (*rotate_fun) (t_mat4 *, float), float a);
+int	deal_key(int key, void *param);
+void	free_cam(t_camera *cam);
+int	exit_app(t_fdf *map);
 #endif

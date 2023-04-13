@@ -44,18 +44,31 @@ void	multvec(t_vector4 *a, t_mat4 *b, t_vector4 *res)
 	}
 }
 
+void	set_vec_to_zero(t_vector4 *vec)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		vec->tab[i] = 0;
+		i++;	
+	}
+}
+
 void	normalize_vec(t_vector4 *vec)
 {
 	vec->tab[0] /= vec->tab[3];
 	vec->tab[1] /= vec->tab[3];
 	vec->tab[2] /= vec->tab[3];
 	vec->tab[3] /= vec->tab[3];
-	/*if (vec->tab[0] > 1 || vec->tab[0] < -1)
-		vec->tab[0] = 0;
+	/*
+	if (vec->tab[0] > 1 || vec->tab[0] < -1)
+		set_vec_to_zero(vec);
 	if (vec->tab[1] > 1 || vec->tab[1] < -1)
-		vec->tab[1] = 0;
+		set_vec_to_zero(vec);
 	if (vec->tab[2] > 1 || vec->tab[2] < -1)
-		vec->tab[2] = 0;*/
+		set_vec_to_zero(vec);*/
 }
 
 void	proj_vec(t_mat4 *pr, t_mat4 *c, t_mat4 *sc, t_vector4 *e, t_vector4 *s)

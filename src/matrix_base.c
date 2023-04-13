@@ -55,7 +55,8 @@ int	init_vec4(t_vector4 **vec)
 
 void	free_v(t_vector4 *vec)
 {
-	free(vec->tab);
+	if (vec)
+		free(vec->tab);
 	free(vec);
 }
 
