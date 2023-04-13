@@ -70,9 +70,9 @@ void	draw_map(t_fdf *map)
 
 void	my_mlx_put_pixel(t_fdf *map, int x, int y)
 {
-	if (y > SCREEN_H || y < 0)
+	if (y >= SCREEN_H || y < 0)
 		return;
-	if (x > SCREEN_W || x < 0)
+	if (x >= SCREEN_W || x < 0)
 		return;
 	map->img.addr[y * SCREEN_W + x] = 0x00FFFFFF;
 }

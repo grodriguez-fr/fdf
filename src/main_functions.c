@@ -1,5 +1,45 @@
 #include "fdf.h"
 
+void	free_map(t_fdf *map)
+{
+	unsigned int	i;
+	unsigned int	j;
+
+	i = 0;
+	while (map->map && i < map->dimy)
+	{
+		j = 0;
+		while (map->map[i] && j < map->dimx)
+		{
+			if (map->map[i][j].tab)
+				free(map->map[i][j].tab);
+			j++;
+		}
+		if (map->map[i])
+			free(map->map[i]);
+		i++;
+	}
+	free(map->map);
+}
+
+int	exit_app(t_fdf *map, int error)
+{
+	if (!map)
+		return (exit(error), 1);
+	free_map(map);
+	free_cam(map->cam);
+	if (map->mlx && map->win)
+		mlx_destroy_window(map->mlx, map->win);
+	if (map->mlx)
+		mlx_destroy_display(map->mlx);
+	free(map);
+	if (error == 2)
+		ft_putstr_fd("Error : malloc failed\n", 2);
+	if (error == 3)
+		ft_putstr_fd("Error : map not well formated\n", 2);
+	return (exit(error), 1);
+}
+
 void	render_screen(t_fdf *map)
 {
 	map->img.img = mlx_new_image(map->mlx, SCREEN_W, SCREEN_H);
