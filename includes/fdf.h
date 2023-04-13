@@ -103,6 +103,7 @@ typedef struct s_fdf
 int	deal_key(int key, void *param);
 int	exit_app(t_fdf *map, int error);
 int	exitmlx(void *arg);
+int	init_map(t_fdf **map, char *arg);
 
 /* parsing */
 int		parse_map(t_fdf *map, const char *filename);
