@@ -58,6 +58,7 @@ typedef struct s_mat4
 typedef struct s_draw
 {
 	unsigned int	i;
+	unsigned int	j;
 	t_mat4		*projection;
 	t_mat4		*screen;	
 	t_mat4		*cammat;
@@ -100,7 +101,8 @@ typedef struct s_fdf
 
 /*main functions */
 int	deal_key(int key, void *param);
-int	exit_app(t_fdf *map);
+int	exit_app(t_fdf *map, int error);
+int	exitmlx(void *arg);
 
 /* parsing */
 int		parse_map(t_fdf *map, const char *filename);

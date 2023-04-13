@@ -36,3 +36,24 @@ void	set_vector(t_fdf *map, int nb, int i, int j)
 	map->map[i][j].tab[2] = (float)nb/-5;
 	map->map[i][j].tab[3] = 1;
 }
+
+int	exitmlx(void *arg)
+{
+	t_fdf *map;
+
+	map = arg;
+	exit_app(map, 0);
+	return (1);
+}
+
+void	free_splited(char **splited)
+{
+	int	i;
+
+	if (!splited)
+		return ;
+	i = 0;
+	while (splited[i])
+		free(splited[i++]);
+	free(splited);
+}

@@ -51,7 +51,6 @@ int	rotate_camera(t_fdf *map, void (*rotate_fun) (t_mat4 *, float), float a)
 	t_mat4 *rot;
 	t_vector4 *copy;
 
-	return (0);
 	if (!init_mat4(&rot))
 		return (0);
 	if (!init_vec4(&copy))

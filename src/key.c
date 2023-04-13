@@ -22,10 +22,10 @@ void	free_map(t_fdf *map)
 	free(map->map);
 }
 
-int	exit_app(t_fdf *map)
+int	exit_app(t_fdf *map, int error)
 {
 	if (!map)
-		return (exit(0), 1);
+		return (exit(error), 1);
 	free_map(map);
 	free_cam(map->cam);
 	if (map->mlx && map->win)
@@ -33,19 +33,34 @@ int	exit_app(t_fdf *map)
 	if (map->mlx)
 		mlx_destroy_display(map->mlx);
 	free(map);
-	return (exit(0), 1);
+	if (error == 2)
+		ft_putstr_fd("Error : malloc failed\n", 2);
+	return (exit(error), 1);
 }
 
-void	free_splited(char **splited)
-{
-	int	i;
 
-	if (!*splited)
-		return ;
-	i = 0;
-	while (splited[i])
-		free(splited[i++]);
-	free(splited);
+void	deal_key2(int key, t_fdf *map)
+{
+	if (key == KEY_LEFT)
+		if (!rotate_camera(map, &rotation_x_matrix, -0.015))
+			exit_app(map, 2);
+	if (key == KEY_RIGHT)
+		if (!rotate_camera(map, &rotation_x_matrix, 0.015))
+			exit_app(map, 2);
+	if (key == KEY_UP)
+		if (!rotate_camera(map, &rotation_y_matrix, -0.015))
+			exit_app(map, 2);
+	if (key == KEY_DOWN)
+		if (!rotate_camera(map, &rotation_y_matrix, 0.015))
+			exit_app(map, 2);
+	if (key == 'k')
+		if (!rotate_camera(map, &rotation_z_matrix, -0.015))
+			exit_app(map, 2);
+	if (key == 'l')
+		if (!rotate_camera(map, &rotation_z_matrix, 0.015))
+			exit_app(map, 2);
+	if (key == ESCAPE_KEY)
+		exit_app(map, 0);
 }
 
 int	deal_key(int key, void *param)
@@ -65,26 +80,7 @@ int	deal_key(int key, void *param)
 		map->cam->position->tab[2] = map->cam->position->tab[2] + map->cam->speed;
 	if (key == 'o')
 		map->cam->position->tab[2] = map->cam->position->tab[2] - map->cam->speed;
-	if (key == KEY_LEFT)
-		if (!rotate_camera(map, &rotation_x_matrix, -0.015))
-			exit_app(map);
-	if (key == KEY_RIGHT)
-		if (!rotate_camera(map, &rotation_x_matrix, 0.015))
-			exit_app(map);
-	if (key == KEY_UP)
-		if (!rotate_camera(map, &rotation_y_matrix, -0.015))
-			exit_app(map);
-	if (key == KEY_DOWN)
-		if (!rotate_camera(map, &rotation_y_matrix, 0.015))
-			exit_app(map);
-	if (key == 'k')
-		if (!rotate_camera(map, &rotation_z_matrix, -0.015))
-			exit_app(map);
-	if (key == 'l')
-		if (!rotate_camera(map, &rotation_z_matrix, 0.015))
-			exit_app(map);
-	if (key == ESCAPE_KEY)
-		exit_app(map);
+	deal_key2(key, map);
 	render_screen(map);
 	return (1);
 }

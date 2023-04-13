@@ -69,27 +69,22 @@ static int	fill_map(t_fdf *map, int fd)
 	int			i;
 	int			j;
 
-	line = get_next_line(fd);
-	if (!line)
-		return (0);
-	splited = ft_split(line, ' ');
-	i = 0;
-	while (i < (int)map->dimy)
+	i = -1;
+	while (++i < (int)map->dimy)
 	{
-		if (!splited)
+		line = get_next_line(fd);
+		if (!line)
 			return (0);
+		splited = ft_split(line, ' ');
+		if (!splited)
+			return (free(line), 0);
 		j = -1;
 		while (++j < (int)map->dimx)
 			set_vector(map, ft_atoi(splited[j]), i, j);
-		free(line);
-		line = get_next_line(fd);
-		if (!line)
-			return (free_splited(splited), free(line), i + 1 == (int)map->dimy);
 		free_splited(splited);
-		splited = ft_split(line, ' ');
-		i++;	
+		free(line);
 	}
-	return (free_splited(splited), free(line), 1);
+	return (i == (int)map->dimy);
 }
 
 int	parse_map(t_fdf *map, const char *filename)

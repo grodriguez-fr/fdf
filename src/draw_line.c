@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-static void	draw_line_higrad(t_bresenham *b, t_fdf *map)
+static void	draw_line_more_vertical(t_bresenham *b, t_fdf *map)
 {
 	int			delta[2];
 	int			way_x;
@@ -25,7 +25,7 @@ static void	draw_line_higrad(t_bresenham *b, t_fdf *map)
 	}
 }
 
-static void	draw_line_lograd(t_bresenham *b, t_fdf *map)
+static void	draw_line_more_horizontal(t_bresenham *b, t_fdf *map)
 {
 	int			delta[2];
 	int			way_y;
@@ -90,12 +90,12 @@ void	draw_line(t_fdf *map, t_vector4 *start, t_vector4 *end)
 	{
 		if (b.p0x > b.p1x)
 			exchange_p0_p1(&b);
-		draw_line_lograd(&b, map);
+		draw_line_more_horizontal(&b, map);
 	}
 	else
 	{
 		if (b.p0y > b.p1y)
 			exchange_p0_p1(&b);
-		draw_line_higrad(&b, map);
+		draw_line_more_vertical(&b, map);
 	}
 }

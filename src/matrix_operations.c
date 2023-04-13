@@ -77,4 +77,3 @@ int	proj_vec(t_mat4 *pr, t_mat4 *c, t_mat4 *sc, t_vector4 *e, t_vector4 *s)
 	free_v(s2);
 	return (1);
 }
-

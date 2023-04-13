@@ -40,7 +40,6 @@ void	scaling_matrix(t_mat4 *m, float scale)
 	m->tab[3][3] = 1;
 }
 
-/*add rotation matrix*/
 void	rotation_x_matrix(t_mat4 *m, float a)
 {
 	m->tab[0][0] = 1;
