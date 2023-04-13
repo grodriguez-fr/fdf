@@ -95,14 +95,14 @@ int	parse_map(t_fdf *map, const char *filename)
 	if (fd == -1)
 		return (write_error());
 	if (!set_dimension(map, fd))
-		return (0);
+		return (3);
 	if (close(fd) == -1)
 		return (write_error());
 	fd = open(filename, O_RDONLY);
 	if (!malloc_fdf(map))
-		return (0);
+		return (2);
 	if (!fill_map(map, fd))
-		return (0);
+		return (2);
 	if (close(fd) == -1)
 		return (write_error());
 	return (1);

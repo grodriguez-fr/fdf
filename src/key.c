@@ -35,6 +35,8 @@ int	exit_app(t_fdf *map, int error)
 	free(map);
 	if (error == 2)
 		ft_putstr_fd("Error : malloc failed\n", 2);
+	if (error == 3)
+		ft_putstr_fd("Error : map not well formated\n", 2);
 	return (exit(error), 1);
 }
 
