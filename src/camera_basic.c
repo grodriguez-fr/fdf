@@ -1,4 +1,5 @@
 #include "fdf.h"
+
 void	init_iso(t_camera *c)
 {
 	c->up->tab[0] = -0.567347;
@@ -25,14 +26,11 @@ int	init_cam(t_camera *c, float x, float y, float z, float speed)
 	c->position->tab[0] = x;
 	c->position->tab[1] = y;
 	c->position->tab[2] = z;
-	c->forward->tab[2] = 1;
-	c->up->tab[1] = 1;
-	c->right->tab[0] = 1;
 	init_iso(c);
 	c->h_fov = M_PI / 3;
 	c->v_fov = c->h_fov * ((float)SCREEN_H / (float)SCREEN_W);
-	c->near_plane = 0.1;
-	c->far_plane = 100;
+	c->near_plane = NEAR_PLANE;
+	c->far_plane = FAR_PLANE;
 	c->speed = speed;
 	return (1);
 }

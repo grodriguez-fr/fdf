@@ -51,7 +51,6 @@ int	main(int argc, char **argv)
 		return (ft_putstr_fd("Wrong arg number\n", 2), 1);
 	if (!init_map(&map, argv[1]))
 		return (1);
-	printf("%d %d\n", map->dimx, map->dimy);
 	render_screen(map);
 	mlx_key_hook(map->win, deal_key, map);
 	mlx_hook(map->win, 17, 1L >> 17, exitmlx, map);

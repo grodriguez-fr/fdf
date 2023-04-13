@@ -20,18 +20,21 @@
 # include <string.h>
 # include <errno.h>
 # include <math.h>
-# include <stdio.h>
 # include "mlx.h"
 # include "get_next_line.h"
 # include "libft.h"
 
 # define SCREEN_H 500
 # define SCREEN_W 1000
+
 # define KEY_LEFT 65361
 # define KEY_UP 65362
 # define KEY_RIGHT 65363
 # define KEY_DOWN 65364
 # define ESCAPE_KEY 65307
+
+# define NEAR_PLANE 0.1f
+# define FAR_PLANE 100
 
 typedef struct s_bresenham
 {
@@ -94,37 +97,44 @@ typedef struct s_fdf
 	void		*win;
 }	t_fdf;
 
+/*main functions */
+int	deal_key(int key, void *param);
+int	exit_app(t_fdf *map);
+
 /* parsing */
 int		parse_map(t_fdf *map, const char *filename);
 int		write_error(void);
 int		numbers_per_line(char *line);
 int		init_cam(t_camera *cam, float x, float y, float z, float speed);
+void	free_splited(char **splited);
 
+/* draw and camera functions */
 void	free_cam(t_camera *cam);
-void	set_vector(t_fdf *map, int nb, int i, int j);
-void	translation_matrix(t_mat4 *m, float tx, float ty, float tz);
-void	scaling_matrix(t_mat4 *m, float scale);
-void	rotation_x_matrix(t_mat4 *m, float a);
-void	rotation_y_matrix(t_mat4 *m, float a);
-void	rotation_z_matrix(t_mat4 *m, float a);
-void	mult(t_mat4 *a, t_mat4 *b, t_mat4 *res);
-void	camera_matrix(t_camera *cam, t_mat4 *res);
-void	projection_matrix(t_camera *cam, t_mat4 *res);
-void	camera_screen_matrix(t_mat4 *res);
-void	proj_vec(t_mat4 *pr, t_mat4 *c, t_mat4 *sc, t_vector4 *e, t_vector4 *s);
-void	free_mat4(t_mat4 *m);
-int	init_mat4(t_mat4 **m);
-int	init_vec4(t_vector4 **vec);
-void	free_v(t_vector4 *vec);
-void	vec_copy(t_vector4 *dst, t_vector4 *src);
-void	multvec(t_vector4 *a, t_mat4 *b, t_vector4 *res);
 void	draw_map(t_fdf *map);
 void	draw_line(t_fdf *map, t_vector4 *start, t_vector4 *end);
 void	my_mlx_put_pixel(t_fdf *map, int x, int y);
 void	render_screen(t_fdf *map);
 int	rotate_camera(t_fdf *map, void (*rotate_fun) (t_mat4 *, float), float a);
-int	deal_key(int key, void *param);
-void	free_cam(t_camera *cam);
-int	exit_app(t_fdf *map);
-void	free_splited(char **splited);
+
+/* vector and matrix functions*/
+int		init_mat4(t_mat4 **m);
+int		init_vec4(t_vector4 **vec);
+void	free_mat4(t_mat4 *m);
+void	free_v(t_vector4 *vec);
+
+void	translation_matrix(t_mat4 *m, float tx, float ty, float tz);
+void	scaling_matrix(t_mat4 *m, float scale);
+void	rotation_x_matrix(t_mat4 *m, float a);
+void	rotation_y_matrix(t_mat4 *m, float a);
+void	rotation_z_matrix(t_mat4 *m, float a);
+void	camera_matrix(t_camera *cam, t_mat4 *res);
+void	projection_matrix(t_camera *cam, t_mat4 *res);
+void	camera_screen_matrix(t_mat4 *res);
+
+void	proj_vec(t_mat4 *pr, t_mat4 *c, t_mat4 *sc, t_vector4 *e, t_vector4 *s);
+void	set_vector(t_fdf *map, int nb, int i, int j);
+void	vec_copy(t_vector4 *dst, t_vector4 *src);
+void	mult(t_mat4 *a, t_mat4 *b, t_mat4 *res);
+void	multvec(t_vector4 *a, t_mat4 *b, t_vector4 *res);
+
 #endif

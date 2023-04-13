@@ -24,7 +24,6 @@ void	free_map(t_fdf *map)
 
 int	exit_app(t_fdf *map)
 {
-	printf("exiiit app\n");
 	if (!map)
 		return (exit(0), 1);
 	free_map(map);
@@ -48,12 +47,12 @@ void	free_splited(char **splited)
 		free(splited[i++]);
 	free(splited);
 }
+
 int	deal_key(int key, void *param)
 {
 	t_fdf *map;
 
 	map = param;
-	//printf("key : %d\n", key);
 	if (key == 'a')
 		map->cam->position->tab[0] = map->cam->position->tab[0] - map->cam->speed;
 	if (key == 'd')
