@@ -24,21 +24,30 @@ void	free_map(t_fdf *map)
 
 int	exit_app(t_fdf *map)
 {
-	printf("exiiit\n");
+	printf("exiiit app\n");
 	if (!map)
 		return (exit(0), 1);
-	printf("exiiit\n");
 	free_map(map);
-	printf("exiiit\n");
 	free_cam(map->cam);
-	printf("exiiit\n");
 	if (map->mlx && map->win)
 		mlx_destroy_window(map->mlx, map->win);
-	printf("exiiit\n");
+	if (map->mlx)
+		mlx_destroy_display(map->mlx);
 	free(map);
 	return (exit(0), 1);
 }
 
+void	free_splited(char **splited)
+{
+	int	i;
+
+	if (!*splited)
+		return ;
+	i = 0;
+	while (splited[i])
+		free(splited[i++]);
+	free(splited);
+}
 int	deal_key(int key, void *param)
 {
 	t_fdf *map;

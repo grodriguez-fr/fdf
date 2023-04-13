@@ -27,6 +27,7 @@ static int	set_dimension(t_fdf *map, int fd)
 		dimy++;
 		if (dimx != numbers_per_line(line))
 			return (0);
+		free(line);
 		line = get_next_line(fd);
 	}
 	map->dimx = dimx;
@@ -80,13 +81,15 @@ static int	fill_map(t_fdf *map, int fd)
 		j = -1;
 		while (++j < (int)map->dimx)
 			set_vector(map, ft_atoi(splited[j]), i, j);
+		free(line);
 		line = get_next_line(fd);
 		if (!line)
-			return (i + 1 == (int)map->dimy);
+			return (free_splited(splited), free(line), i + 1 == (int)map->dimy);
+		free_splited(splited);
 		splited = ft_split(line, ' ');
 		i++;	
 	}
-	return (1);
+	return (free_splited(splited), free(line), 1);
 }
 
 int	parse_map(t_fdf *map, const char *filename)

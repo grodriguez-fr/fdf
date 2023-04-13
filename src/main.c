@@ -26,11 +26,10 @@ int	init_map(t_fdf **map, char *arg)
 
 	(*map) = malloc(sizeof(t_fdf));
 	if (!(*map))
-		exit_app(*map);
-	printf("before parsing\n");
+		exit(0);
+	(*map)->cam = 0;
 	if(!parse_map(*map, arg))
 		exit_app(*map);
-	printf("after parsing\n");
 	(*map)->mlx= mlx_init();
 	(*map)->win= mlx_new_window((*map)->mlx, SCREEN_W, SCREEN_H, "FdF");
 	(*map)->cam = malloc(sizeof(t_camera));

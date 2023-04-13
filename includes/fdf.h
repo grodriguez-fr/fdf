@@ -94,7 +94,7 @@ typedef struct s_fdf
 	void		*win;
 }	t_fdf;
 
-
+/* parsing */
 int		parse_map(t_fdf *map, const char *filename);
 int		write_error(void);
 int		numbers_per_line(char *line);
@@ -112,14 +112,12 @@ void	camera_matrix(t_camera *cam, t_mat4 *res);
 void	projection_matrix(t_camera *cam, t_mat4 *res);
 void	camera_screen_matrix(t_mat4 *res);
 void	proj_vec(t_mat4 *pr, t_mat4 *c, t_mat4 *sc, t_vector4 *e, t_vector4 *s);
-void	free_mat4(t_mat4 **m);
+void	free_mat4(t_mat4 *m);
 int	init_mat4(t_mat4 **m);
 int	init_vec4(t_vector4 **vec);
 void	free_v(t_vector4 *vec);
 void	vec_copy(t_vector4 *dst, t_vector4 *src);
 void	multvec(t_vector4 *a, t_mat4 *b, t_vector4 *res);
-void	printmat(t_mat4 *m);
-void	printvec(t_vector4 *v);
 void	draw_map(t_fdf *map);
 void	draw_line(t_fdf *map, t_vector4 *start, t_vector4 *end);
 void	my_mlx_put_pixel(t_fdf *map, int x, int y);
@@ -128,4 +126,5 @@ int	rotate_camera(t_fdf *map, void (*rotate_fun) (t_mat4 *, float), float a);
 int	deal_key(int key, void *param);
 void	free_cam(t_camera *cam);
 int	exit_app(t_fdf *map);
+void	free_splited(char **splited);
 #endif

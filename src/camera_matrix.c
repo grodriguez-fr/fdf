@@ -50,8 +50,8 @@ void	camera_matrix(t_camera *cam, t_mat4 *res)
 	camera_translate_matrix(cam, translate);
 	camera_rotate_matrix(cam, rotate);
 	mult(translate, rotate, res);
-	free_mat4(&translate);
-	free_mat4(&rotate);
+	free_mat4(translate);
+	free_mat4(rotate);
 }
 
 void	projection_matrix(t_camera *cam, t_mat4 *res)

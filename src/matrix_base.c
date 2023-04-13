@@ -1,18 +1,16 @@
 #include "fdf.h"
 
-void	free_mat4(t_mat4 **m)
+void	free_mat4(t_mat4 *m)
 {
 	int	i;
 
 	i = 0;
-	if (!m || !*m)
+	if (!m)
 		return ;
-	while ((*m)->tab && (*m)->tab[i] && i < 4)
-		free((*m)->tab[i++]);
-	if (*m)
-		free((*m)->tab);
-	free(*m);
-	*m = 0;
+	while (m->tab && i < 4)
+		free(m->tab[i++]);
+	free(m->tab);
+	free(m);
 }
 
 int	init_mat4(t_mat4 **m)
@@ -24,13 +22,13 @@ int	init_mat4(t_mat4 **m)
 		return (0);
 	(*m)->tab = malloc(sizeof(float *) * 4);
 	if (!(*m)->tab)
-		return (free_mat4(m), 0);
+		return (free_mat4(*m), 0);
 	i = 0;
 	while (i < 4)
 	{
 		(*m)->tab[i] = malloc(sizeof(float) * 4);
 		if (!(*m)->tab[i])
-			return (free_mat4(m), 0);
+			return (free_mat4(*m), 0);
 		i++;
 	}
 	return (1);
@@ -70,22 +68,4 @@ void	vec_copy(t_vector4 *dst, t_vector4 *src)
 		dst->tab[i] = src->tab[i];
 		i++;
 	}
-}
-
-void	printmat(t_mat4 *m)
-{
-	printf("\n");
-	for (int i = 0;i < 4; i ++)
-	{
-		for (int j = 0; j < 4; j++)
-			printf("%f ", m->tab[i][j]);
-		printf("\n");
-	}
-}
-
-void	printvec(t_vector4 *v)
-{
-	for (int i = 0; i < 4; i++)
-		printf("%f ", v->tab[i]);
-	printf("\n");
 }

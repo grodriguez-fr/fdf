@@ -13,6 +13,14 @@ void	init_draw(t_draw *d, t_fdf *map)
 	camera_screen_matrix(d->screen);
 }
 
+void	free_draw(t_draw *d)
+{
+	free_mat4(d->projection);
+	free_mat4(d->cammat);
+	free_mat4(d->screen);
+	free_v(d->res);
+	free_v(d->res2);
+}
 void	draw_map(t_fdf *map)
 {
 	t_draw		d;
@@ -39,6 +47,7 @@ void	draw_map(t_fdf *map)
 		}
 		d.i = d.i + 1;
 	}
+	free_draw(&d);
 }
 
 void	my_mlx_put_pixel(t_fdf *map, int x, int y)

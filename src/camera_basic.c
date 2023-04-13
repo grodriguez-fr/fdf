@@ -56,7 +56,7 @@ int	rotate_camera(t_fdf *map, void (*rotate_fun) (t_mat4 *, float), float a)
 	if (!init_mat4(&rot))
 		return (0);
 	if (!init_vec4(&copy))
-		return (free_mat4(&rot), 0);
+		return (free_mat4(rot), 0);
 	rotate_fun(rot, a);
 	vec_copy(copy, map->cam->up);
 	multvec(copy, rot, map->cam->up);
@@ -64,5 +64,5 @@ int	rotate_camera(t_fdf *map, void (*rotate_fun) (t_mat4 *, float), float a)
 	multvec(copy, rot, map->cam->forward);
 	vec_copy(copy, map->cam->right);
 	multvec(copy, rot, map->cam->right);
-	return (free_mat4(&rot), free_v(copy), 1);
+	return (free_mat4(rot), free_v(copy), 1);
 }
