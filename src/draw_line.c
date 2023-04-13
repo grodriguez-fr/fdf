@@ -14,7 +14,6 @@ static void	draw_line_higrad(t_bresenham *b, t_fdf *map)
 	error = 2 * delta[0] - delta[1];
 	while (b->p0y < b->p1y)
 	{
-		//mlx_pixel_put(map->mlx, map->win, b->p0x, b->p0y, 0x00FFFFFF);
 		my_mlx_put_pixel(map, b->p0x, b->p0y);
 		if (error > 0)
 		{
@@ -40,7 +39,6 @@ static void	draw_line_lograd(t_bresenham *b, t_fdf *map)
 	error = 2 * delta[1] - delta[0];
 	while (b->p0x < b->p1x)
 	{
-		//mlx_pixel_put(map->mlx, map->win, b->p0x, b->p0y, 0x00FFFFFF);
 		my_mlx_put_pixel(map, b->p0x, b->p0y);
 		if (error > 0)
 		{

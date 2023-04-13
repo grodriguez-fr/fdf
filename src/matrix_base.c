@@ -5,9 +5,9 @@ void	free_mat4(t_mat4 **m)
 	int	i;
 
 	i = 0;
-	if (!m)
+	if (!m || !*m)
 		return ;
-	while (*m && (*m)->tab && (*m)->tab[i] && i < 4)
+	while ((*m)->tab && (*m)->tab[i] && i < 4)
 		free((*m)->tab[i++]);
 	if (*m)
 		free((*m)->tab);

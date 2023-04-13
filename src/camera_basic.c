@@ -39,6 +39,8 @@ int	init_cam(t_camera *c, float x, float y, float z, float speed)
 
 void	free_cam(t_camera *cam)
 {
+	if (!cam)
+		return ;
 	free_v(cam->position);
 	free_v(cam->forward);
 	free_v(cam->up);

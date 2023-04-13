@@ -82,7 +82,7 @@ static int	fill_map(t_fdf *map, int fd)
 			set_vector(map, ft_atoi(splited[j]), i, j);
 		line = get_next_line(fd);
 		if (!line)
-			return (0);
+			return (i + 1 == (int)map->dimy);
 		splited = ft_split(line, ' ');
 		i++;	
 	}

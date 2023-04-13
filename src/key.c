@@ -1,15 +1,17 @@
 #include "fdf.h"
 
-int	exit_app(t_fdf *map)
+void	free_map(t_fdf *map)
 {
 	unsigned int	i;
 	unsigned int	j;
 
+	if (!map->map)
+		return ;
 	i = 0;
 	while (i < map->dimy)
 	{
 		j = 0;
-		while (j < map->dimx)
+		while (map->map[i] && j < map->dimx)
 		{
 			free(map->map[i][j].tab);
 			j++;
@@ -18,11 +20,23 @@ int	exit_app(t_fdf *map)
 		i++;
 	}
 	free(map->map);
+}
+
+int	exit_app(t_fdf *map)
+{
+	printf("exiiit\n");
+	if (!map)
+		return (exit(0), 1);
+	printf("exiiit\n");
+	free_map(map);
+	printf("exiiit\n");
 	free_cam(map->cam);
-	mlx_destroy_window(map->mlx, map->win);
+	printf("exiiit\n");
+	if (map->mlx && map->win)
+		mlx_destroy_window(map->mlx, map->win);
+	printf("exiiit\n");
 	free(map);
-	exit(0);
-	return (1);
+	return (exit(0), 1);
 }
 
 int	deal_key(int key, void *param)

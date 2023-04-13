@@ -62,13 +62,6 @@ void	normalize_vec(t_vector4 *vec)
 	vec->tab[1] /= vec->tab[3];
 	vec->tab[2] /= vec->tab[3];
 	vec->tab[3] /= vec->tab[3];
-	/*
-	if (vec->tab[0] > 1 || vec->tab[0] < -1)
-		set_vec_to_zero(vec);
-	if (vec->tab[1] > 1 || vec->tab[1] < -1)
-		set_vec_to_zero(vec);
-	if (vec->tab[2] > 1 || vec->tab[2] < -1)
-		set_vec_to_zero(vec);*/
 }
 
 void	proj_vec(t_mat4 *pr, t_mat4 *c, t_mat4 *sc, t_vector4 *e, t_vector4 *s)
