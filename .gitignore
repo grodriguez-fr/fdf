@@ -2,3 +2,7 @@
 *.swp
 fdf
 libft/libft.a
+*.gen
+minilibx-linux/libmlx.a
+minilibx-linux/libmlx_Linux.a
+minilibx-linux/test/mlx-test
