@@ -85,5 +85,5 @@ void	my_mlx_put_pixel(t_fdf *map, int x, int y)
 		return ;
 	if (x >= SCREEN_W || x < 0)
 		return ;
-	map->img.addr[y * SCREEN_W + x] = 0x00FFFFFF;
+	map->img.addr[y * SCREEN_W + x] = 0x00FF0000;
 }
