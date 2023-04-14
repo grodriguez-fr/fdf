@@ -6,7 +6,7 @@
 #    By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 15:35:05 by gurodrig          #+#    #+#              #
-#    Updated: 2023/03/28 11:23:17 by gurodrig         ###   ########.fr        #
+#    Updated: 2023/04/14 12:30:06 by gurodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS	= src/main.c \
@@ -23,10 +23,8 @@ SRCS	= src/main.c \
 	  src/parsing.c
 MLX_PATH	= minilibx-linux
 INCLUDE_FOLDER	= includes
-MLX_LIB		= $(MLX_PATH)/libmlx_Linux.a
-MLX_INC		= -I$(MLX_PATH)
-X11_LIB		= -L/usr/X11R6/lib -lX11
-XEXT_LIB	= -lXext
+MLX_INC		= -I$(MLX_PATH) -O3
+LIBS_MLX	= -L$(MLX_PATH) -lmlx -lXext -lX11 -lm -lz
 
 HEADERS	= includes/fdf.h includes/get_next_line.h includes/libft.h
 
@@ -36,7 +34,7 @@ OBJS	= $(addprefix $(OBJ_FOLDER)/, $(notdir $(SRCS:.c=.o)))
 NAME	= fdf 
 
 CC	= cc
-CFLAGS	= -Wall -Wextra -Werror -lm
+CFLAGS	= -Wall -Wextra -Werror
 
 LIBFT	= libft/libft.a
 
@@ -47,10 +45,10 @@ $(OBJ_FOLDER)/%.o: src/%.c
 all: $(NAME)
 
 
-$(NAME): $(OBJS) $(HEADERS) $(LIBFT) $(MLX_LIB)
-	${CC} $(CFLAGS) $(LIBFT) $(MLX_INC) $(MLX_LIB) $(X11_LIB) $(XEXT_LIB) -o $@ $^
+$(NAME): $(OBJS) $(HEADERS) $(LIBFT) mlx
+	${CC} $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(LIBS_MLX) $(MLX_INC)
 
-$(MLX_LIB):
+mlx:
 	make -sC $(MLX_PATH)
 
 $(LIBFT):
