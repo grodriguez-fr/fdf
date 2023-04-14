@@ -1,16 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_line.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/14 12:53:45 by gurodrig          #+#    #+#             */
+/*   Updated: 2023/04/14 13:11:01 by gurodrig         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "fdf.h"
 
 static void	draw_line_more_vertical(t_bresenham *b, t_fdf *map)
 {
-	int			delta[2];
-	int			way_x;
-	int			error;
+	int	delta[2];
+	int	way_x;
+	int	error;
 
 	delta[0] = b->p1x - b->p0x;
 	delta[1] = b->p1y - b->p0y;
 	way_x = 1;
-	if (delta[0] < 0 && (delta[0] *= -1))
+	if (delta[0] < 0)
+	{
 		way_x = -1;
+		delta[0] = -delta[0];
+	}
 	error = 2 * delta[0] - delta[1];
 	while (b->p0y < b->p1y)
 	{
@@ -27,15 +41,18 @@ static void	draw_line_more_vertical(t_bresenham *b, t_fdf *map)
 
 static void	draw_line_more_horizontal(t_bresenham *b, t_fdf *map)
 {
-	int			delta[2];
-	int			way_y;
-	int			error;
+	int	delta[2];
+	int	way_y;
+	int	error;
 
 	delta[0] = b->p1x - b->p0x;
 	delta[1] = b->p1y - b->p0y;
 	way_y = 1;
-	if (delta[1] < 0 && (delta[1] *= -1))
+	if (delta[1] < 0)
+	{
 		way_y = -1;
+		delta[1] = -delta[1];
+	}
 	error = 2 * delta[1] - delta[0];
 	while (b->p0x < b->p1x)
 	{
@@ -50,15 +67,15 @@ static void	draw_line_more_horizontal(t_bresenham *b, t_fdf *map)
 	}
 }
 
-int	init_bresenham(t_bresenham *b, int x0, int y0, int x1, int y1) 
+int	init_bresenham(t_bresenham *b, int x0, int y0, int x1, int y1)
 {
-	if (x0 < -SCREEN_W*0.2 || x0 > SCREEN_W*1.2)
+	if (x0 < -SCREEN_W * 0.2 || x0 > SCREEN_W * 1.2)
 		return (0);
-	if (y0 < -SCREEN_H*0.2 || y0 > SCREEN_H*1.2)
+	if (y0 < -SCREEN_H * 0.2 || y0 > SCREEN_H * 1.2)
 		return (0);
-	if (x1 < -SCREEN_W*0.2 || x1 > SCREEN_W*1.2)
+	if (x1 < -SCREEN_W * 0.2 || x1 > SCREEN_W * 1.2)
 		return (0);
-	if (y1 < -SCREEN_H*0.2 || y1 > SCREEN_H*1.2)
+	if (y1 < -SCREEN_H * 0.2 || y1 > SCREEN_H * 1.2)
 		return (0);
 	b->p0x = x0;
 	b->p0y = y0;
@@ -71,7 +88,7 @@ void	exchange_p0_p1(t_bresenham *b)
 {
 	int	bufferx;
 	int	buffery;
-	
+
 	bufferx = b->p0x;
 	buffery = b->p0y;
 	b->p0x = b->p1x;
@@ -82,9 +99,10 @@ void	exchange_p0_p1(t_bresenham *b)
 
 void	draw_line(t_fdf *map, t_vector4 *start, t_vector4 *end)
 {
-	t_bresenham b;
+	t_bresenham	b;
 
-	if (!init_bresenham(&b, start->tab[0], start->tab[1], end->tab[0], end->tab[1]))
+	if (!init_bresenham(&b, start->tab[0], start->tab[1], \
+				end->tab[0], end->tab[1]))
 		return ;
 	if (abs(b.p1y - b.p0y) < abs(b.p1x - b.p0x))
 	{

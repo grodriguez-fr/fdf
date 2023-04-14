@@ -6,7 +6,7 @@
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 11:08:07 by gurodrig          #+#    #+#             */
-/*   Updated: 2023/03/28 15:59:15 by gurodrig         ###   ########.fr       */
+/*   Updated: 2023/04/14 12:55:07 by gurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
@@ -55,7 +55,7 @@ static int	malloc_fdf(t_fdf *map)
 			map->map[i][j].tab = malloc(sizeof(float) * 4);
 			if (!map->map[i][j].tab)
 				return (0);
-			j++;	
+			j++;
 		}
 		i++;
 	}
@@ -66,8 +66,8 @@ static int	fill_map(t_fdf *map, int fd)
 {
 	char	*line;
 	char	**splited;
-	int			i;
-	int			j;
+	int		i;
+	int		j;
 
 	i = -1;
 	while (++i < (int)map->dimy)

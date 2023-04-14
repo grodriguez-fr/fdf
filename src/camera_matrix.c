@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   camera_matrix.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/14 12:54:42 by gurodrig          #+#    #+#             */
+/*   Updated: 2023/04/14 12:54:44 by gurodrig         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "fdf.h"
 
 void	camera_translate_matrix(t_camera *cam, t_mat4 *res)
@@ -47,7 +58,7 @@ int	camera_matrix(t_camera *cam, t_mat4 *res)
 
 	if (!init_mat4(&translate))
 		return (0);
-	if(!init_mat4(&rotate))
+	if (!init_mat4(&rotate))
 		return (free_mat4(translate), 0);
 	camera_translate_matrix(cam, translate);
 	camera_rotate_matrix(cam, rotate);
@@ -69,7 +80,7 @@ void	projection_matrix(t_camera *cam, t_mat4 *res)
 	res->tab[0][2] = 0;
 	res->tab[0][3] = 0;
 	res->tab[1][0] = 0;
-	res->tab[1][1] = 2 / (tan(cam->v_fov /2) * 2);
+	res->tab[1][1] = 2 / (tan(cam->v_fov / 2) * 2);
 	res->tab[1][2] = 0;
 	res->tab[1][3] = 0;
 	res->tab[2][0] = 0;

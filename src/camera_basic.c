@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   camera_basic.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/14 12:51:27 by gurodrig          #+#    #+#             */
+/*   Updated: 2023/04/14 12:51:33 by gurodrig         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "fdf.h"
 
 void	init_iso(t_camera *c)
@@ -48,8 +59,8 @@ void	free_cam(t_camera *cam)
 
 int	rotate_camera(t_fdf *map, void (*rotate_fun) (t_mat4 *, float), float a)
 {
-	t_mat4 *rot;
-	t_vector4 *copy;
+	t_mat4		*rot;
+	t_vector4	*copy;
 
 	if (!init_mat4(&rot))
 		return (0);

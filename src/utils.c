@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/14 12:50:19 by gurodrig          #+#    #+#             */
+/*   Updated: 2023/04/14 12:50:47 by gurodrig         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "fdf.h"
 
 int	write_error(void)
@@ -33,13 +44,13 @@ void	set_vector(t_fdf *map, int nb, int i, int j)
 {
 	map->map[i][j].tab[0] = (float)i;
 	map->map[i][j].tab[1] = (float)j;
-	map->map[i][j].tab[2] = (float)nb/-5;
+	map->map[i][j].tab[2] = (float)nb / -5;
 	map->map[i][j].tab[3] = 1;
 }
 
 int	exitmlx(void *arg)
 {
-	t_fdf *map;
+	t_fdf	*map;
 
 	map = arg;
 	exit_app(map, 0);

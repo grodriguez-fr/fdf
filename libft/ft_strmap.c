@@ -6,7 +6,7 @@
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 11:33:17 by gurodrig          #+#    #+#             */
-/*   Updated: 2022/11/09 11:33:23 by gurodrig         ###   ########lyon.fr   */
+/*   Updated: 2023/04/14 12:39:58 by gurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -25,7 +25,7 @@ char	*ft_strmap(char const *s, char (*f)(char))
 	while (s[i])
 	{
 		res[i] = (*f)(s[i]);
-	i++;
+		i++;
 	}
 	res[i] = 0;
 	return (res);
