@@ -6,7 +6,7 @@
 #    By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 15:35:05 by gurodrig          #+#    #+#              #
-#    Updated: 2023/04/14 12:30:06 by gurodrig         ###   ########.fr        #
+#    Updated: 2023/04/14 13:30:40 by gurodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS	= src/main.c \
@@ -45,10 +45,10 @@ $(OBJ_FOLDER)/%.o: src/%.c
 all: $(NAME)
 
 
-$(NAME): $(OBJS) $(HEADERS) $(LIBFT) mlx
+$(NAME): $(OBJS) $(HEADERS) $(LIBFT) minilibx-linux/libmlx_Linux.a
 	${CC} $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(LIBS_MLX) $(MLX_INC)
 
-mlx:
+minilibx-linux/libmlx_Linux.a:
 	make -sC $(MLX_PATH)
 
 $(LIBFT):
@@ -65,4 +65,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re mlx
