@@ -6,7 +6,7 @@
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 11:08:07 by gurodrig          #+#    #+#             */
-/*   Updated: 2023/04/14 12:55:07 by gurodrig         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:17:39 by gurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
@@ -69,22 +69,26 @@ static int	fill_map(t_fdf *map, int fd)
 	int		i;
 	int		j;
 
+	line = get_next_line(fd);
+	if (!line)
+		return (0);
+	splited = ft_split(line, ' ');
 	i = -1;
 	while (++i < (int)map->dimy)
 	{
-		line = get_next_line(fd);
-		if (!line)
-			return (0);
-		splited = ft_split(line, ' ');
 		if (!splited)
-			return (free(line), 0);
+			return (0);
 		j = -1;
 		while (++j < (int)map->dimx)
 			set_vector(map, ft_atoi(splited[j]), i, j);
-		free_splited(splited);
 		free(line);
+		line = get_next_line(fd);
+		if (!line)
+			return (free_splited(splited), free(line), i + 1 == (int)map->dimy);
+		free_splited(splited);
+		splited = ft_split(line, ' ');
 	}
-	return (i == (int)map->dimy);
+	return (free_splited(splited), free(line), 1);
 }
 
 int	parse_map(t_fdf *map, const char *filename)
