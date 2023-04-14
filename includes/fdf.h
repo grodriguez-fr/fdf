@@ -6,7 +6,7 @@
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 17:20:53 by gurodrig          #+#    #+#             */
-/*   Updated: 2023/04/14 15:21:23 by gurodrig         ###   ########.fr       */
+/*   Updated: 2023/04/14 18:02:18 by gurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 # include <unistd.h>
 # include <fcntl.h>
-# include <sys/stat.h>
-# include <sys/types.h>
-# include <string.h>
 # include <errno.h>
 # include <math.h>
 # include "mlx.h"

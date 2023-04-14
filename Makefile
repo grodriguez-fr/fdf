@@ -6,7 +6,7 @@
 #    By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 15:35:05 by gurodrig          #+#    #+#              #
-#    Updated: 2023/04/14 13:30:40 by gurodrig         ###   ########.fr        #
+#    Updated: 2023/04/14 17:59:10 by gurodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS	= src/main.c \
@@ -24,7 +24,7 @@ SRCS	= src/main.c \
 MLX_PATH	= minilibx-linux
 INCLUDE_FOLDER	= includes
 MLX_INC		= -I$(MLX_PATH) -O3
-LIBS_MLX	= -L$(MLX_PATH) -lmlx -lXext -lX11 -lm -lz
+LIBS_MLX	= -L$(MLX_PATH) -lmlx -lXext -lX11 -lm
 
 HEADERS	= includes/fdf.h includes/get_next_line.h includes/libft.h
 
