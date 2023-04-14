@@ -6,7 +6,7 @@
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:48:49 by gurodrig          #+#    #+#             */
-/*   Updated: 2023/04/14 12:48:54 by gurodrig         ###   ########.fr       */
+/*   Updated: 2023/04/14 13:20:26 by gurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
@@ -83,8 +83,7 @@ int	init_map(t_fdf **map, char *arg)
 	max = (float)(*map)->dimx;
 	if ((*map)->dimy > (*map)->dimx)
 		max = (float)(*map)->dimy;
-	if (!init_cam((*map)->cam, 27 / 19.0 * max, 27 / 19.0 * max, \
-				-30 / 19.0 * max, max / 25))
+	if (!init_cam((*map)->cam, 27 / 19.0 * max, -30 / 19.0 * max, max / 25))
 		exit_app(*map, 2);
 	return (1);
 }

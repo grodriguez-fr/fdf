@@ -6,7 +6,7 @@
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:50:06 by gurodrig          #+#    #+#             */
-/*   Updated: 2023/04/14 12:50:07 by gurodrig         ###   ########.fr       */
+/*   Updated: 2023/04/14 13:16:20 by gurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
@@ -75,16 +75,16 @@ void	normalize_vec(t_vector4 *vec)
 	vec->tab[3] /= vec->tab[3];
 }
 
-int	proj_vec(t_mat4 *pr, t_mat4 *c, t_mat4 *sc, t_vector4 *e, t_vector4 *s)
+int	proj_vec(t_draw *d, t_vector4 *e, t_vector4 *s)
 {
 	t_vector4	*s2;
 
 	if (!init_vec4(&s2))
 		return (0);
-	multvec(e, c, s);
-	multvec(s, pr, s2);
+	multvec(e, d->cammat, s);
+	multvec(s, d->projection, s2);
 	normalize_vec(s2);
-	multvec(s2, sc, s);
+	multvec(s2, d->screen, s);
 	free_v(s2);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:40:55 by gurodrig          #+#    #+#             */
-/*   Updated: 2023/04/14 12:45:34 by gurodrig         ###   ########.fr       */
+/*   Updated: 2023/04/14 13:17:04 by gurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
@@ -43,20 +43,17 @@ int	init_draw(t_draw *d, t_fdf *map)
 
 int	draw_map_help(t_draw *d, t_fdf *map)
 {
-	if (!proj_vec(d->projection, d->cammat, d->screen, \
-				&map->map[d->i][d->j], d->res))
+	if (!proj_vec(d, &map->map[d->i][d->j], d->res))
 		return (exit_app(map, 2), 0);
 	if (d->i + 1 < map->dimy)
 	{
-		if (!proj_vec(d->projection, d->cammat, d->screen, \
-					&map->map[d->i + 1][d->j], d->res2))
+		if (!proj_vec(d, &map->map[d->i + 1][d->j], d->res2))
 			return (exit_app(map, 2), 0);
 		draw_line(map, d->res, d->res2);
 	}
 	if (d->j + 1 < map->dimx)
 	{
-		if (!proj_vec(d->projection, d->cammat, d->screen, \
-					&map->map[d->i][d->j + 1], d->res2))
+		if (!proj_vec(d, &map->map[d->i][d->j + 1], d->res2))
 			return (exit_app(map, 2), 0);
 		draw_line(map, d->res, d->res2);
 	}

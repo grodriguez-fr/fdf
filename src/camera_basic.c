@@ -6,7 +6,7 @@
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:51:27 by gurodrig          #+#    #+#             */
-/*   Updated: 2023/04/14 12:51:33 by gurodrig         ###   ########.fr       */
+/*   Updated: 2023/04/14 13:20:09 by gurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
@@ -24,7 +24,7 @@ void	init_iso(t_camera *c)
 	c->forward->tab[2] = 0.793395;
 }
 
-int	init_cam(t_camera *c, float x, float y, float z, float speed)
+int	init_cam(t_camera *c, float xy, float z, float speed)
 {
 	if (!init_vec4(&c->position))
 		return (0);
@@ -34,8 +34,8 @@ int	init_cam(t_camera *c, float x, float y, float z, float speed)
 		return (free_v(c->position), free_v(c->forward), 0);
 	if (!init_vec4(&c->right))
 		return (free_v(c->position), free_v(c->forward), free_v(c->up), 0);
-	c->position->tab[0] = x;
-	c->position->tab[1] = y;
+	c->position->tab[0] = xy;
+	c->position->tab[1] = xy;
 	c->position->tab[2] = z;
 	init_iso(c);
 	c->h_fov = M_PI / 3;

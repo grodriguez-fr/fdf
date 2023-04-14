@@ -6,7 +6,7 @@
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 17:20:53 by gurodrig          #+#    #+#             */
-/*   Updated: 2023/03/28 11:28:29 by gurodrig         ###   ########.fr       */
+/*   Updated: 2023/04/14 13:20:53 by gurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int	init_map(t_fdf **map, char *arg);
 int		parse_map(t_fdf *map, const char *filename);
 int		write_error(void);
 int		numbers_per_line(char *line);
-int		init_cam(t_camera *cam, float x, float y, float z, float speed);
+int		init_cam(t_camera *cam, float xy, float z, float speed);
 void	free_splited(char **splited);
 
 /* draw and camera functions */
@@ -135,7 +135,7 @@ int	camera_matrix(t_camera *cam, t_mat4 *res);
 void	projection_matrix(t_camera *cam, t_mat4 *res);
 void	camera_screen_matrix(t_mat4 *res);
 
-int	proj_vec(t_mat4 *pr, t_mat4 *c, t_mat4 *sc, t_vector4 *e, t_vector4 *s);
+int	proj_vec(t_draw *d, t_vector4 *e, t_vector4 *s);
 void	set_vector(t_fdf *map, int nb, int i, int j);
 void	vec_copy(t_vector4 *dst, t_vector4 *src);
 void	mult(t_mat4 *a, t_mat4 *b, t_mat4 *res);
