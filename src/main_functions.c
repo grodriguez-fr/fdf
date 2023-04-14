@@ -6,7 +6,7 @@
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:48:49 by gurodrig          #+#    #+#             */
-/*   Updated: 2023/04/14 13:20:26 by gurodrig         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:55:07 by gurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
@@ -43,6 +43,7 @@ int	exit_app(t_fdf *map, int error)
 		mlx_destroy_window(map->mlx, map->win);
 	if (map->mlx)
 		mlx_destroy_display(map->mlx);
+	free(map->mlx);
 	free(map);
 	if (error == 2)
 		ft_putstr_fd("Error : malloc failed\n", 2);
