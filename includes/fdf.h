@@ -6,7 +6,7 @@
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 17:20:53 by gurodrig          #+#    #+#             */
-/*   Updated: 2023/04/14 13:34:17 by gurodrig         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:21:23 by gurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <string.h>
 # include <errno.h>
 # include <math.h>
-# include <stdio.h>
 # include "mlx.h"
 # include "get_next_line.h"
 # include "libft.h"
