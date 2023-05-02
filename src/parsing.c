@@ -95,6 +95,11 @@ int	parse_map(t_fdf *map, const char *filename)
 {
 	int	fd;
 
+	map->map = 0;
+	map->dimx = 0;
+	map->dimy = 0;
+	map->cam = 0;
+	map->mlx = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		return (write_error());
