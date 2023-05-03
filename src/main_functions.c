@@ -81,9 +81,7 @@ int	init_map(t_fdf **map, char *arg)
 	(*map)->cam = malloc(sizeof(t_camera));
 	if (!(*map)->cam)
 		exit_app(*map, 2);
-	max = (float)(*map)->dimx;
-	if ((*map)->dimy > (*map)->dimx)
-		max = (float)(*map)->dimy;
+	max = max_size_map(*map);
 	if (!init_cam((*map)->cam, 27 / 19.0 * max, -30 / 19.0 * max, max / 25))
 		exit_app(*map, 2);
 	return (1);

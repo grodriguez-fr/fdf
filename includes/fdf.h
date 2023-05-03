@@ -132,6 +132,7 @@ void	projection_matrix(t_camera *cam, t_mat4 *res);
 void	camera_screen_matrix(t_mat4 *res);
 
 int		proj_vec(t_draw *d, t_vector4 *e, t_vector4 *s);
+float	max_size_map(t_fdf *map);
 void	set_vector(t_fdf *map, int nb, int i, int j);
 void	vec_copy(t_vector4 *dst, t_vector4 *src);
 void	mult(t_mat4 *a, t_mat4 *b, t_mat4 *res);

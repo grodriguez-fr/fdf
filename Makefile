@@ -11,6 +11,7 @@
 # **************************************************************************** #
 SRCS	= src/main.c \
 	  src/utils.c \
+	  src/utils_2.c \
 	  src/matrix_functions.c \
 	  src/camera_basic.c \
 	  src/camera_matrix.c \
