@@ -6,7 +6,7 @@
 #    By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/22 15:35:05 by gurodrig          #+#    #+#              #
-#    Updated: 2023/05/02 13:21:11 by gurodrig         ###   ########.fr        #
+#    Updated: 2023/05/05 13:14:52 by gurodrig         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 SRCS	= src/main.c \
@@ -39,7 +39,7 @@ CFLAGS	= -Wall -Wextra -Werror
 
 LIBFT	= libft/libft.a
 
-$(OBJ_FOLDER)/%.o: src/%.c $(HEADERS)
+$(OBJ_FOLDER)/%.o: src/%.c $(HEADERS) Makefile
 	${CC} -I$(INCLUDE_FOLDER) $(MLX_INC) -c $< -o $@ $(CFLAGS)
 
 
