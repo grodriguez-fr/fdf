@@ -6,7 +6,7 @@
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 12:59:30 by gurodrig          #+#    #+#             */
-/*   Updated: 2023/04/14 12:59:32 by gurodrig         ###   ########.fr       */
+/*   Updated: 2023/05/05 08:36:57 by gurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
@@ -31,6 +31,8 @@ void	deal_key2(int key, t_fdf *map)
 	if (key == 'l')
 		if (!rotate_camera(map, &rotation_z_matrix, 0.015))
 			exit_app(map, 2);
+	if (key == 'r')
+		reinit_cam(map);
 	if (key == ESCAPE_KEY)
 		exit_app(map, 0);
 }

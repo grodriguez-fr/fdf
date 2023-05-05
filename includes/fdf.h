@@ -6,7 +6,7 @@
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 17:20:53 by gurodrig          #+#    #+#             */
-/*   Updated: 2023/04/14 18:02:18 by gurodrig         ###   ########.fr       */
+/*   Updated: 2023/05/05 09:24:28 by gurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ int		init_mat4(t_mat4 **m);
 int		init_vec4(t_vector4 **vec);
 void	free_mat4(t_mat4 *m);
 void	free_v(t_vector4 *vec);
+void	normalize_vec(t_vector4 *vec);
 
 void	translation_matrix(t_mat4 *m, float tx, float ty, float tz);
 void	scaling_matrix(t_mat4 *m, float scale);
@@ -137,5 +138,7 @@ void	set_vector(t_fdf *map, int nb, int i, int j);
 void	vec_copy(t_vector4 *dst, t_vector4 *src);
 void	mult(t_mat4 *a, t_mat4 *b, t_mat4 *res);
 void	multvec(t_vector4 *a, t_mat4 *b, t_vector4 *res);
+void	reinit_cam(t_fdf *map);
+void	init_iso(t_camera *c);
 
 #endif
