@@ -6,7 +6,7 @@
 /*   By: gurodrig <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 08:12:06 by gurodrig          #+#    #+#             */
-/*   Updated: 2023/05/05 10:11:04 by gurodrig         ###   ########.fr       */
+/*   Updated: 2023/05/16 10:17:50 by gurodrig         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fdf.h"
@@ -46,7 +46,7 @@ float	max_size_map(t_fdf *map)
 
 void	reinit_cam(t_fdf *map)
 {
-	float max;
+	float	max;
 
 	init_iso(map->cam);
 	max = max_size_map(map);
